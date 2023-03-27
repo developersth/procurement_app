@@ -5,7 +5,7 @@ services:
     image: mongo:latest
     restart: always
     ports:
-      - '27017:27017'
+      - '27018:27017'
     volumes:
       - mongo-volume:/data/db
     networks:
@@ -21,8 +21,9 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - MONGO_URI = mongodb://database/admin
-      - MONGO_HOST= database
+      MONGO_URI: mongodb://database:27017/admin
+      MONGO_HOST: database
+      MONGO_PORT: 27017
     volumes:
       - backend-volume:/usr/src/app/build/uploaded
     networks:
