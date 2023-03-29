@@ -18,7 +18,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 ]
             },
             { path: '', component: AppLayoutComponent},
-            { path: 'auth', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) },
+            { path: 'auth', loadChildren: () => import('./actual/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
             { path: 'notfound', component: NotfoundComponent },
             { path: '**', redirectTo: '/notfound' },

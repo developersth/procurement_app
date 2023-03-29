@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     username!: string;
     password!: string;
     data: any;
+    submitted: boolean = false;
 
     ngOnInit() {
         // this.form = this.formBuilder.group({
@@ -37,10 +38,13 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder
     ) {}
     onSubmit(): void {
+        this.submitted=true;
+        if (this.username?.trim()) {
         this.authService.login(this.username, this.password).subscribe(
           token => console.log('Logged in successfully'),
           error => console.log('Failed to log in', error)
         );
         console.log(this.authService.isAuthenticated())
+        }
       }
 }
